@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRIAD | Rotation Lab</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <header class="brand">
+          <h1>TRIAD</h1>
+          <p id="runtimeInfo">Rotation Lab</p>
+        </header>
+
+        <section class="control-block">
+          <h2>Panorama</h2>
+          <div class="row">
+            <select id="imageSelect" aria-label="Panorama"></select>
+            <button id="refreshImagesBtn" type="button" title="Refresh panoramas" aria-label="Refresh panoramas"><i data-lucide="refresh-cw"></i></button>
+          </div>
+          <button id="loadImageBtn" class="primary" type="button">Load panorama</button>
+          <input id="uploadInput" type="file" accept="image/*" aria-label="Upload ERP" />
+        </section>
+
+        <section class="control-block">
+          <h2>Watermark</h2>
+          <label class="field">
+            <span>Message seed</span>
+            <input id="seedInput" type="number" value="42" />
+          </label>
+          <button id="embedBtn" class="primary" type="button">Embed watermark</button>
+          <div class="metric-grid">
+            <div>
+              <span>Clean BER</span>
+              <strong id="cleanBer">-</strong>
+            </div>
+            <div>
+              <span>Clean Acc</span>
+              <strong id="cleanAcc">-</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="control-block">
+          <h2>Rotation</h2>
+          <div class="button-grid">
+            <button id="resetRotationBtn" type="button" title="Reset rotation" aria-label="Reset rotation"><i data-lucide="rotate-ccw"></i></button>
+            <button id="confirmRotationBtn" class="accent" type="button">Confirm &amp; extract</button>
+          </div>
+          <div class="quat-readout">
+            <span>q</span>
+            <code id="quatReadout">0.000, 0.000, 0.000, 1.000</code>
+          </div>
+          <div class="metric-grid">
+            <div>
+              <span>Rot BER</span>
+              <strong id="rotBer">-</strong>
+            </div>
+            <div>
+              <span>Rot Acc</span>
+              <strong id="rotAcc">-</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="control-block">
+          <h2>Downloads</h2>
+          <a id="watermarkedLink" href="#" target="_blank" rel="noreferrer">watermarked.png</a>
+          <a id="rotatedLink" href="#" target="_blank" rel="noreferrer">rotated_erp.png</a>
+          <a id="jsonLink" href="#" target="_blank" rel="noreferrer">extraction.json</a>
+        </section>
+      </aside>
+
+      <main class="workspace">
+        <section class="viewer-panel">
+          <div class="status-bar">
+            <span id="statusText">Connecting...</span>
+            <span id="sessionText"></span>
+          </div>
+          <canvas id="sphereCanvas"></canvas>
+        </section>
+
+        <section class="preview-strip">
+          <figure>
+            <figcaption>Original ERP</figcaption>
+            <img id="originalPreview" alt="" />
+          </figure>
+          <figure>
+            <figcaption>Watermarked ERP</figcaption>
+            <img id="watermarkedPreview" alt="" />
+          </figure>
+          <figure>
+            <figcaption>Rotated ERP</figcaption>
+            <img id="rotatedPreview" alt="" />
+          </figure>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/vendor/lucide.min.js"></script>
+    <script>lucide.createIcons();</script>
+    <script type="module" src="/static/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+# Tested research environment. Install a matching PyTorch CUDA/CPU build first.
+torch==2.7.0
+torchvision==0.22.0
+e3nn==0.5.9
+numpy==1.26.4
+scipy==1.13.1
+Pillow==10.4.0
+torchmetrics==1.7.2
+tqdm>=4.65

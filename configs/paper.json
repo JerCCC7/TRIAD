@@ -1,0 +1,16 @@
+{
+  "model": {
+    "latent_dim": 32,
+    "resolution": 256,
+    "lmax": 16,
+    "middle_layers": 64,
+    "embed_irreps": "64x14e + 128x6e + 128x8e",
+    "hidden_irreps": "32x0e + 32x14e + 64x6e + 64x8e + 32x1e + 32x2e + 16x3e + 16x4e + 16x5e + 16x7e"
+  },
+  "training": {
+    "epochs": 300, "batch_size": 8, "lr": 0.0001,
+    "optimizer": "adam", "weight_decay": 0.0, "scheduler": "none",
+    "lambda_bce": 10.0, "lambda_mse_start": 1.0, "lambda_mse_end": 20.0,
+    "ramp_start": 101, "ramp_end": 200, "seed": 42
+  }
+}

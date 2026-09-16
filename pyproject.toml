@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "triad-spherical-watermark"
+version = "0.1.0"
+description = "Rotation-Invariant Spherical Watermarking via Third-Order SO(3) Representation Coupling (ICML 2026)"
+requires-python = ">=3.9"
+license = {file = "LICENSE"}
+readme = "README.md"
+dependencies = [
+  "torch>=2.7,<2.8", "torchvision>=0.22,<0.23", "e3nn==0.5.9",
+  "numpy>=1.26,<2", "scipy>=1.13,<1.14", "Pillow>=10,<12",
+  "torchmetrics>=1.7,<1.8", "tqdm>=4.65"
+]
+
+[project.optional-dependencies]
+hub = ["huggingface_hub>=0.27,<1"]
+dev = ["pytest>=8,<9"]
+
+[tool.setuptools.packages.find]
+include = ["triad*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

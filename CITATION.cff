@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "Please cite our ICML 2026 paper when using TRIAD."
+type: software
+title: TRIAD
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/Jerome-Chen7/TRIAD"
+authors:
+  - family-names: Chen
+    given-names: Pengzhen
+  - family-names: Liu
+    given-names: Yanwei
+  - family-names: Gu
+    given-names: Xiaoyan
+  - family-names: Argyriou
+    given-names: Antonios
+  - family-names: Liu
+    given-names: Wu
+  - family-names: Wang
+    given-names: Weiping
+preferred-citation:
+  type: conference-paper
+  title: "Rotation-Invariant Spherical Watermarking via Third-Order SO(3) Representation Coupling"
+  authors:
+    - family-names: Chen
+      given-names: Pengzhen
+    - family-names: Liu
+      given-names: Yanwei
+    - family-names: Gu
+      given-names: Xiaoyan
+    - family-names: Argyriou
+      given-names: Antonios
+    - family-names: Liu
+      given-names: Wu
+    - family-names: Wang
+      given-names: Weiping
+  collection-title: "Proceedings of the International Conference on Machine Learning"
+  year: 2026

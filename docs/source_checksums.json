@@ -1,0 +1,7 @@
+{
+  "matched_bispectrum_multiplicityloop/model.py": "a4a1cf5cd9c8d221d998a2b2aa5b3a28547b2004b5d3607b615bf8188feb47ab",
+  "matched_bispectrum_multiplicityloop/test.py": "d244a0da87a4a35accc9f8cd313b058698f89fde44cb4bca360eaae2c84b591a",
+  "matched_bispectrum_multiplicityloop/train.py": "a5d8645c21d352f261fcb8bb7c8eac694059e07efe6e8d84d043dd2ebc990966",
+  "matched_bispectrum_multiplicityloop/unet_modules.py": "a2b50270e717b2838ade7070b36c30837e9fa64636fd1dfd55ed05027746eae6",
+  "matched_bispectrum_multiplicityloop/config.py": "82876a7d93b81068e6aeab139e60130cf957e510cd16162656c0c53079becd0d"
+}
