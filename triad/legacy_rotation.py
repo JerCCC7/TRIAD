@@ -4,7 +4,7 @@ import torch
 import torch.nn.functional as F
 
 def get_grid(H, W, device):
-    """生成球面网格坐标"""
+    """Generate an endpoint-inclusive spherical Cartesian grid."""
     theta = torch.linspace(0, math.pi, H, device=device)
     phi = torch.linspace(0, 2 * math.pi, W, device=device)
     theta, phi = torch.meshgrid(theta, phi, indexing='ij')
@@ -17,7 +17,7 @@ def get_grid(H, W, device):
 
 
 def rotate_panorama(img, rot_mat):
-    """对全景图进行 SO(3) 旋转"""
+    """Apply the historical SO(3) ERP resampling convention."""
     B, C, H, W = img.shape
     device = img.device
     

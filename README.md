@@ -10,6 +10,10 @@ representations and recovers them through third-order SO(3) invariant coupling.
 This repository provides the model, training, rotation and conventional distortion
 evaluation, and an interactive ERP-to-sphere rotation demo.
 
+[Installation](#installation) | [Pretrained model](#pretrained-model) |
+[Evaluation](#evaluation) | [Training](#training) |
+[Interactive demo](#interactive-demo)
+
 ![TRIAD framework](docs/assets/framework.png)
 
 The release contains the 32-bit model used by the authors' current test script.
@@ -151,14 +155,63 @@ image manifests, and JSONL metrics. Training and validation lists must be disjoi
 
 ## Interactive Demo
 
+The complete visualization application is included in this GitHub repository
+under [`visualizer/`](visualizer/): the Python inference server, browser UI,
+Three.js sphere renderer, and locally bundled browser dependencies. Include this
+entire directory when uploading or cloning the repository. Weights are the only
+model-related files distributed separately through Hugging Face.
+
+### Start the Application
+
+After installing the dependencies and placing the model files in
+`checkpoints/triad-32bit/`, run from the repository root:
+
 ```bash
-python visualizer/app.py --checkpoint checkpoints/triad-32bit --data-dir data/test
+python visualizer/app.py \
+  --checkpoint checkpoints/triad-32bit \
+  --data-dir data/test \
+  --output-dir outputs/visualizer
 ```
 
-Open **http://127.0.0.1:7861**. Load/upload an ERP, embed a watermark, drag the
-sphere, then select **Confirm & extract**. PNGs and extraction JSON files are
-saved under `outputs/visualizer/`. Each confirmed rotation gets a separate file.
-The demo uses the spherical sampler and extracts from saved PNG pixel values.
+Open **http://127.0.0.1:7861** in a WebGL-capable browser. The Python server runs
+the actual model, so opening `index.html` directly or publishing the static files
+through GitHub Pages alone will not run watermark embedding or extraction.
+No npm build, external CDN, or separate frontend server is required.
+
+### Test a Rotation
+
+1. Choose an ERP from the image list and click **Load panorama**, or upload an
+   image from your computer. The server converts it to RGB and the model's native
+   resolution (256 x 512 for the released checkpoint).
+2. Set **Message seed** and click **Embed watermark**. The sphere now displays
+   the watermarked image; **Clean BER** and **Clean Acc** report extraction before
+   rotation. The first embedding request loads the model weights.
+3. Drag the textured sphere to choose a 3D rotation. The quaternion readout uses
+   `[x, y, z, w]`. Use **Reset rotation** to return to the initial orientation.
+4. Click **Confirm & extract** to export the rotated ERP and extract its message.
+   **Rot BER** and **Rot Acc** show the result, with image and JSON download links.
+
+The original ERP, watermarked ERP, and rotated ERP remain visible below the sphere.
+The demo decodes the same 8-bit pixel values saved in the PNG. Each confirmed
+rotation creates distinct files, and all rotations are relative to the current
+watermarked image. Repeated confirmation does not compound the rotation.
+
+```text
+outputs/visualizer/<session>/
+  original.png
+  embed_001.png
+  embed_001.json
+  embed_001_rotation_001.png
+  embed_001_rotation_001.json
+```
+
+The extraction JSON includes the quaternion, rotation matrix, true bits,
+predicted bits, error count, BER, and bit accuracy. The demo uses the `spherical`
+sampler; to compare it with command-line evaluation, use
+`--rotation-sampler spherical --png-roundtrip`. See the
+[visualizer guide](visualizer/README.md) for all options and troubleshooting.
+
+### Remote Access
 
 For a remote server, forward the port through your IDE or SSH:
 
